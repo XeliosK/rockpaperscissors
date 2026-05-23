@@ -12,40 +12,31 @@
 
 
 
-// INITIAL SCORE COUNTER
-
-const humanScore = 0;
-const computerScore = 0;
-
 // WRITE COMPUTER CHOICE FUNCTION
-
-function getComputerChoice () {
+function getComputerChoice() {
     const value = Math.random() * 100;
     if (value <= 33) {
         return "rock";
     } else if (value >= 33 & value <= 66) {
-        return "raper";
+        return "paper";
     } else {
         return "scissors";
     }
 }
 
-// console.log (getComputerChoice()); // CHECKS GETCOMPUTERCHOICE FUNCTION
+// console.log ("PC chose: " + getComputerChoice()); // CHECKS GETCOMPUTERCHOICE FUNCTION
 
 // HUMAN CHOICE FUNCTION
-function getHumanChoice () {
+function getHumanChoice() {
     const choice = prompt("Please select: rock, paper or scissors");
     console.log("User entered: " + choice);
+    return choice;
 }
 
-getHumanChoice();
+// getHumanChoice();
 
 // PLAY ROUND FUNCTION
-
-function playRound (humanChoice, computerChoice) {
-    const humanChoice = getHumanChoice();
-    const computerChoice = getComputerChoice();
-
+function playRound(humanChoice, computerChoice) {
     if (humanChoice === "paper" && computerChoice === "rock") {
         console.log ("You chose: " + humanChoice + " PC chose: " + computerChoice)
         console.log ("You win! Paper beats rock.")
@@ -53,9 +44,80 @@ function playRound (humanChoice, computerChoice) {
     } else if (humanChoice === "rock" && computerChoice === "rock") {
         console.log ("You chose: " + humanChoice + " PC chose: " + computerChoice)
         console.log ("It's a tie!")
-    } else {
+    } else if (humanChoice === "scissors" && computerChoice === "rock") {
         console.log ("You chose: " + humanChoice + " PC chose: " + computerChoice)
         console.log ("You lose! Rock beats scissors.")
         return computerScore++;
+    } else if (humanChoice === "paper" && computerChoice === "scissors") {
+        console.log ("You chose: " + humanChoice + " PC chose: " + computerChoice)
+        console.log ("You lose! Scissors beats paper.")
+        return computerScore++;
+    } else if (humanChoice === "rock" && computerChoice === "scissors") {
+        console.log ("You chose: " + humanChoice + " PC chose: " + computerChoice)
+        console.log ("You win! Rock beats scissors.")
+        return humanScore++;
+    } else if (humanChoice === "scissors" && computerChoice === "scissors") {
+        console.log ("You chose: " + humanChoice + " PC chose: " + computerChoice)
+        console.log ("It's a tie!")
+    } else if (humanChoice === "paper" && computerChoice === "paper") {
+        console.log ("You chose: " + humanChoice + " PC chose: " + computerChoice)
+        console.log ("It's a tie!")
+    } else if (humanChoice === "rock" && computerChoice === "paper") {
+        console.log ("You chose: " + humanChoice + " PC chose: " + computerChoice)
+        console.log ("You lose! Paper beats rock.")
+    } else {
+        console.log ("You chose: " + humanChoice + " PC chose: " + computerChoice)
+        console.log ("You win! Scissors beats paper.")
+        return humanScore++;
     }
 }
+
+
+// BASE SCORE STARTING VALUE
+let humanScore = 0;
+let computerScore = 0;
+
+// PLAY GAME FUNCTION
+function playGame() {
+
+    for (let i = 1; i < 6; i++) {
+        console.log(" --- NEW ROUND ---")
+        const humanSelection = getHumanChoice();
+        // console.log(humanSelection);
+        const computerSelection = getComputerChoice();
+        // console.log(computerSelection)
+        playRound(humanSelection, computerSelection);
+        console.log("Human: " + humanScore + " - " + "PC: " + computerScore);
+    }
+}
+
+playGame();
+
+
+//LOOPS ARE JUST BETTER, BELOW WAS ANOTHER ATTEMPT TRYING NOT TO USE THEM
+
+/* function playGame() {
+    console.log(" --- NEW ROUND ---")
+    const humanSelection = getHumanChoice();
+    const computerSelection = getComputerChoice();
+
+    playRound(humanSelection, computerSelection);
+    console.log("Human: " + humanScore + " - " + "PC: " + computerScore);
+    
+    console.log(" --- NEW ROUND ---")
+    playRound(humanSelection, computerSelection);
+    console.log("Human: " + humanScore + " - " + "PC: " + computerScore);
+    
+    console.log(" --- NEW ROUND ---")
+    playRound(humanSelection, computerSelection);
+    console.log("Human: " + humanScore + " - " + "PC: " + computerScore);
+    
+    console.log(" --- NEW ROUND ---")
+    playRound(humanSelection, computerSelection);
+    console.log("Human: " + humanScore + " - " + "PC: " + computerScore);
+
+    console.log(" --- NEW ROUND ---")
+    playRound(humanSelection, computerSelection);
+    console.log("Human: " + humanScore + " - " + "PC: " + computerScore);
+} */
+
