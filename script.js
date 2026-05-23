@@ -28,7 +28,7 @@ function getComputerChoice() {
 
 // HUMAN CHOICE FUNCTION
 function getHumanChoice() {
-    const choice = prompt("Please select: rock, paper or scissors");
+    const choice = prompt("Please select: rock, paper or scissors").toLowerCase();
     console.log("User entered: " + choice);
     return choice;
 }
